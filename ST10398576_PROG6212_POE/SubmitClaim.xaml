@@ -20,12 +20,11 @@
         <Label Content="Total Claim Amount" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Height="26"/>
         <TextBlock x:Name="txtTotalClaimAmount" TextAlignment="Center" HorizontalAlignment="Left" Margin="147,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <TextBlock x:Name="txtSupDoc" TextAlignment="Center" HorizontalAlignment="Left" Margin="67,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
+        <TextBlock x:Name="txtSupDocFile" TextAlignment="Center" HorizontalAlignment="Left" Margin="67,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
         <Button x:Name="btnSupDoc" Content="Upload Documents" HorizontalAlignment="Left" Margin="61,166,0,0" VerticalAlignment="Top" Width="191" Click="btnSupDoc_Click"/>
 
-        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="38,215,0,0" VerticalAlignment="Top" Width="58" Height="25" Click="btnCancel_Click"/>
-        <Button x:Name="btnCalculate" Content="Calculate" HorizontalAlignment="Left" Margin="128,215,0,0" VerticalAlignment="Top" Height="25" Width="57" Click="btnCalculate_Click"/>
-        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="218,215,0,0" VerticalAlignment="Top" Height="25" Width="49" Click="btnSubmit_Click"/>
+        <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="78,210,0,0" VerticalAlignment="Top" Width="58" Height="25" Click="btnCancel_Click"/>
+        <Button x:Name="btnSubmit" Content="Submit" HorizontalAlignment="Left" Margin="171,210,0,0" VerticalAlignment="Top" Height="25" Width="49" Click="btnSubmit_Click"/>
 
     </Grid>
 </Window>

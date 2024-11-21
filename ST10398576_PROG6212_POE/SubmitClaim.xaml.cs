@@ -10,64 +10,33 @@ namespace ST10398576_PROG6212_POE
     /// </summary>
     public partial class SubmitClaim : Window
     {
+        // Declare selectedFilePath as a member variable
+        private string? selectedFilePath;
+
         public SubmitClaim()
         {
             InitializeComponent();
         }
 
         string DBConn = "Data Source=labg9aeb3\\sqlexpress;Initial Catalog=PROG6212_POE;Integrated Security=True;";
-
         private List<string> uploadedFileNames = new List<string>();
 
 
         private void btnSupDoc_Click(object sender, RoutedEventArgs e)
         {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog
-                {
-                    Multiselect = true,
-                    Title = "Select Documents",
-                    Filter = "PDF Files (*.pdf)|*.pdf|Word Documents (*.docx;*.doc)|*.docx;*.doc|Excel Files (*.xlsx)|*.xlsx|All Files (*.*)|*.*"
-                };
+            // Open a file dialog for selecting a document
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Document files (*.pdf;*.docx;*.xlsx)|*.pdf;*.docx;*.xlsx|All files (*.*)|*.*"; // File type filters
+            openFileDialog.Title = "Select Supporting Document";
 
-                if (openFileDialog.ShowDialog() == true)
-                {
-                    foreach (string file in openFileDialog.FileNames)
-                    {
-                        StoreFileSecurely(file);
-                    }
-                    txtSupDoc.Text = string.Join(", ", uploadedFileNames);
-                }
-            }
-            catch (Exception ex)
+            if (openFileDialog.ShowDialog() == true)
             {
-                MessageBox.Show($"An error occurred: {ex.Message}");
+                // Store the selected file path
+                selectedFilePath = openFileDialog.FileName;
+                // Update UI to display selected file name
+                txtSupDocFile.Text = System.IO.Path.GetFileName(selectedFilePath);
             }
         }
-
-        private void StoreFileSecurely(string filePath)
-        {
-            // Define the directory to store the uploaded files
-            string directoryPath = "C:\\SecureUploads"; // Change this to your secure directory
-
-            // Ensure the directory exists
-            if (!Directory.Exists(directoryPath))
-            {
-                Directory.CreateDirectory(directoryPath);
-            }
-
-            // Generate a unique file name to avoid conflicts
-            string fileName = Path.GetFileName(filePath);
-            string newFilePath = Path.Combine(directoryPath, Guid.NewGuid().ToString() + "_" + fileName);
-
-            // Copy the file to the secure directory
-            File.Copy(filePath, newFilePath, true); // true to overwrite if the file already exists
-
-            // Add the uploaded file name to the list
-            uploadedFileNames.Add(fileName);
-        }
-
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -77,31 +46,36 @@ namespace ST10398576_PROG6212_POE
 
         private void btnCalculate_Click(object sender, RoutedEventArgs e)
         {
-            decimal TotalAmount = Convert.ToInt32(txtLessonNum.Text) * Convert.ToDecimal(txtHourlyRate.Text);
-            txtTotalClaimAmount.Text = $"R{TotalAmount}";
+            if (int.TryParse(txtLessonNum.Text, out int noOfSessions) && decimal.TryParse(txtHourlyRate.Text, out decimal hourlyRate))
+            {
+                decimal totalAmount = noOfSessions * hourlyRate;
+                txtLessonNum.Text = $"R {totalAmount:F2}"; // Display in currency format
+            }
+            else
+            {
+                txtLessonNum.Text = "Invalid input";
+            }
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string ClaimClassTaught = txtClassTaughtNum.Text;
-            string ClaimLessonNum = txtLessonNum.Text;
-            string ClaimHourlyRate = txtHourlyRate.Text;
-            string ClaimTotalAmount = txtTotalClaimAmount.Text;
-            string ClaimSupDocs = txtSupDoc.Text;
-            string ClaimStatus = "Pending";
+            try 
+            {
+                // Gets Claim data from the form
+                string ClaimClassTaught = txtClassTaughtNum.Text;
+                int ClaimLessonNum = int.Parse(txtLessonNum.Text);
+                decimal ClaimHourlyRate = decimal.Parse(txtHourlyRate.Text);
+                decimal ClaimTotalAmount = decimal.Parse(txtTotalClaimAmount.Text);
+                string ClaimSupDocs = txtSupDocFile.Text;
+                string ClaimStatus = "Pending";
 
             // Validate inputs
-            if (string.IsNullOrEmpty(ClaimHourlyRate) && string.IsNullOrEmpty(ClaimHourlyRate))
+            if (string.IsNullOrEmpty(ClaimClassTaught) || ClaimLessonNum <= 0 || ClaimHourlyRate<=0 || string.IsNullOrEmpty(ClaimSupDocs))
             {
-                MessageBox.Show("Please fill in hours worked and hourly rate.");
+                MessageBox.Show("Please fill in all fields correctly and upload a document.");
                 return;
             }
 
-            if (!int.TryParse(ClaimHourlyRate, out int HoursWorked) || !int.TryParse(ClaimHourlyRate, out int HourlyRate))
-            {
-                MessageBox.Show("Please enter valid numeric values for hours worked and hourly rate.");
-                return;
-            }
 
             SubmitClaimToDatabase(ClaimClassTaught, HoursWorked, HourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus);
 
