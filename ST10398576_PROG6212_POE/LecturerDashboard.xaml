@@ -9,13 +9,12 @@
     <!-- Link to GitHub Repository:https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
         <Button x:Name="btnSubmitClaim" Content="Submit Claim" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnSubmitClaim_Click"/>
-        <Button x:Name="btnViewClaims" Content="View Claims" HorizontalAlignment="Center" Margin="0,95,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnViewClaims_Click"/>
         <Label x:Name="txtClaimStatus" HorizontalAlignment="Left" Margin="-19,179,0,0" VerticalAlignment="Top" Width="15"/>
 
-        <ListView x:Name="ClaimStatusListView" VerticalAlignment="Top" Margin="52,163,52,0" Height="189">
+        <ListView x:Name="ClaimStatusListView" VerticalAlignment="Top" Margin="52,110,52,0" Height="189">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn Header="Claim ID" DisplayMemberBinding="{Binding ClaimId}" Width="50"/>
+                    <GridViewColumn Header="Claim ID" DisplayMemberBinding="{Binding ClaimID}" Width="50"/>
                     <GridViewColumn Header="Class Taught" Width="100" DisplayMemberBinding="{Binding ClaimClassTaught}"/>
                     <GridViewColumn Header="Total Amount" Width="100" DisplayMemberBinding="{Binding ClaimTotalAmount}"/>
                     <GridViewColumn Header="Claim Status" Width="150" DisplayMemberBinding="{Binding ClaimStatus}"/>
@@ -23,7 +22,7 @@
             </ListView.View>
         </ListView>
 
-        <Button x:Name="btnReturn" Content="Return to Main Menu" HorizontalAlignment="Center" Margin="0,375,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnReturn_Click" />
+        <Button x:Name="btnReturn" Content="Return to Main Menu" HorizontalAlignment="Center" Margin="0,375,0,0"Margin="0,333,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnReturn_Click" />
 
     </Grid>
 </Window>

@@ -9,16 +9,13 @@
     <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
         <Label Content="Class Taught:" HorizontalAlignment="Left" Margin="10,19,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtClassTaughtNum" HorizontalAlignment="Left" Margin="147,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="txtClassTaught" HorizontalAlignment="Left" Margin="147,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <Label Content="No. of Lessons:" HorizontalAlignment="Left" Margin="10,50,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtLessonNum" HorizontalAlignment="Left" Margin="147,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <Label Content="Hourly Rate:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtHourlyRate" HorizontalAlignment="Left" Margin="147,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
-        <Label Content="Total Claim Amount" HorizontalAlignment="Left" Margin="10,112,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBlock x:Name="txtTotalClaimAmount" TextAlignment="Center" HorizontalAlignment="Left" Margin="147,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
         <TextBlock x:Name="txtSupDocFile" TextAlignment="Center" HorizontalAlignment="Left" Margin="67,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
         <Button x:Name="btnSupDoc" Content="Upload Documents" HorizontalAlignment="Left" Margin="61,166,0,0" VerticalAlignment="Top" Width="191" Click="btnSupDoc_Click"/>

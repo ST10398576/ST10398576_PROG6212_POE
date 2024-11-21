@@ -46,10 +46,10 @@ namespace ST10398576_PROG6212_POE
 
         private void btnCalculate_Click(object sender, RoutedEventArgs e)
         {
-            if (int.TryParse(txtLessonNum.Text, out int noOfSessions) && decimal.TryParse(txtHourlyRate.Text, out decimal hourlyRate))
+            if (int.TryParse(txtLessonNum.Text, out int ClaimLessonNum) && decimal.TryParse(txtHourlyRate.Text, out decimal ClaimHourlyRate))
             {
-                decimal totalAmount = noOfSessions * hourlyRate;
-                txtLessonNum.Text = $"R {totalAmount:F2}"; // Display in currency format
+                decimal ClaimTotalAmount = ClaimLessonNum * ClaimHourlyRate;
+                txtLessonNum.Text = $"R {ClaimTotalAmount:F2}"; // Display in currency format
             }
             else
             {
@@ -62,10 +62,9 @@ namespace ST10398576_PROG6212_POE
             try 
             {
                 // Gets Claim data from the form
-                string ClaimClassTaught = txtClassTaughtNum.Text;
+                string ClaimClassTaught = txtClassTaught.Text;
                 int ClaimLessonNum = int.Parse(txtLessonNum.Text);
                 decimal ClaimHourlyRate = decimal.Parse(txtHourlyRate.Text);
-                decimal ClaimTotalAmount = decimal.Parse(txtTotalClaimAmount.Text);
                 string ClaimSupDocs = txtSupDocFile.Text;
                 string ClaimStatus = "Pending";
 
@@ -75,55 +74,50 @@ namespace ST10398576_PROG6212_POE
                 MessageBox.Show("Please fill in all fields correctly and upload a document.");
                 return;
             }
+                
+            decimal ClaimTotalAmount = ClaimLessonNum * ClaimHourlyRate;
 
-
-            SubmitClaimToDatabase(ClaimClassTaught, HoursWorked, HourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus);
-
-        }
-
-        private void SubmitClaimToDatabase(string ClaimClassTaught, int ClaimLessonNum, int ClaimHourlyRate, string ClaimTotalAmount, string ClaimSupDocs, string ClaimStatus)
-        {
-            string query = "INSERT INTO Claims (ClaimClassTaught, ClaimLessonNum, ClaimHourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus) VALUES (@ClaimClassTaught, @ClaimLessonNum, @ClaimHourlyRate, @ClaimTotalAmount, @ClaimSupDocs, @ClaimStatus)";
-
-            using (SqlConnection conn = new SqlConnection(DBConn))
-            {
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@ClaimClassTaught", ClaimClassTaught);
-                cmd.Parameters.AddWithValue("@ClaimLessonNum", ClaimLessonNum);
-                cmd.Parameters.AddWithValue("@ClaimHourlyRate", ClaimHourlyRate);
-                cmd.Parameters.AddWithValue("@ClaimTotalAmount", ClaimTotalAmount);
-                cmd.Parameters.AddWithValue("@ClaimSupDocs", ClaimSupDocs);
-                cmd.Parameters.AddWithValue("@ClaimStatus", ClaimStatus);
-
-                try
-                {
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
-                    MessageBox.Show("Claim submitted successfully!");
-                    Close();
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"An error occurred while submitting the claim: {ex.Message}\n{ex.StackTrace}");
-                }
-            }
-        }
-
-        private bool VerifyDatabaseConnection()
-        {
-            try
-            {
                 using (SqlConnection conn = new SqlConnection(DBConn))
                 {
-                    conn.Open(); // Try to open the connection
-                    return true; // Connection is successful
+                    conn.Open();
+                    int AccountID = string.Parse("SELECT AccountID FROM Account WHERE Username = Username");
+
+                    string query = "INSERT INTO Claims (AccountID, ClaimClassTaught, ClaimLessonNum, ClaimHourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus) " +
+                                    "VALUES (@AccountID, @ClaimClassTaught, @ClaimLessonNum, @ClaimHourlyRate, @ClaimTotalAmount, @ClaimSupDocs, @ClaimStatus)";
+
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@ClaimClassTaught", ClaimClassTaught);
+                        cmd.Parameters.AddWithValue("@ClaimLessonNum", ClaimLessonNum);
+                        cmd.Parameters.AddWithValue("@ClaimHourlyRate", ClaimHourlyRate);
+                        cmd.Parameters.AddWithValue("@ClaimTotalAmount", ClaimTotalAmount);
+                        cmd.Parameters.AddWithValue("@ClaimSupDocs", ClaimSupDocs);
+                        cmd.Parameters.AddWithValue("@ClaimStatus", ClaimStatus);
+
+                        cmd.ExecuteNonQuery();
+                    }
+                    MessageBox.Show("Claim submitted successfully!");
+                    // Optionally, reset the form for a new claim submission
+                    ResetForm();
                 }
             }
             catch (SqlException sqlEx)
             {
-                MessageBox.Show($"Connection error: {sqlEx.Message}");
-                return false; // Connection failed
+                MessageBox.Show($"Database error: {sqlEx.Message}");
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"An error occurred: {ex.Message}");
+            }
+        }
+
+        private void ResetForm()
+        {
+            txtClassTaught.Text = "";
+            txtLessonNum.Text = "";
+            txtHourlyRate.Text = "";
+            txtSupDocFile.Text = "";
+            selectedFilePath = string.Empty;
         }
 
     }

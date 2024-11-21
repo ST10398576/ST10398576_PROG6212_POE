@@ -44,13 +44,6 @@ namespace ST10398576_PROG6212_POE
 
         }
 
-        private void btnViewClaims_Click(object sender, RoutedEventArgs e)
-        {
-            ClaimStatus claimStatus = new ClaimStatus();
-            claimStatus.Show();
-
-        }
-
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
             MainWindow main = new MainWindow();
