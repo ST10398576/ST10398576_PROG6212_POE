@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Program Co-Ordinator/Academic Manager Dashboard" Height="300" Width="545">
 
-    <!-- Link to GitHub Repository: https://github.com/ST10398576/PROG6212_POE_Part2.git-->
+    <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
         <!--Once a Programme Coordinator is logged in this is the window they will be directed to, where they can approve, reject or leave claims pending-->
         <TextBlock Text="Claims" FontSize="20" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,20,0,209"/>

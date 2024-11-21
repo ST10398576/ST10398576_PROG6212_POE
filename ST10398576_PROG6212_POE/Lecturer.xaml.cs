@@ -18,7 +18,7 @@ using static System.Net.Mime.MediaTypeNames;
 namespace ST10398576_PROG6212_POE
 {
     /// <summary>
-    /// Link to GitHub Repository: https://github.com/ST10398576/PROG6212_POE_Part2.git
+    /// Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git
     /// </summary>
     public partial class Lecturer : Window
     {

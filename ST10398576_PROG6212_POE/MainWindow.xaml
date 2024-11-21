@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
         mc:Ignorable="d"
             Title="ST10398576_Welcome User" Height="350" Width="410">
-    <!-- Link to GitHub Repository: https://github.com/ST10398576/PROG6212_POE_Part2.git-->
+    <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
         <Label Content="Contract Monthly Claim System" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="178"/>
         <TextBlock HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" Text="This system is designed to help you manage your monthly claims for the contract you are working on. Please sign in or create an account to proceed" VerticalAlignment="Top" Height="52" Width="391"/>
