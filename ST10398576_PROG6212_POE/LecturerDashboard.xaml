@@ -1,0 +1,29 @@
+﻿<Window x:Class="ST10398576_PROG6212_POE.LecturerDashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
+        mc:Ignorable="d"
+            Title="LecturerDashboard" Height="450" Width="500">
+    <!-- Link to GitHub Repository: https://github.com/ST10398576/PROG6212_POE_Part2.git-->
+    <Grid Background="#D8DEE7">
+        <Button x:Name="btnSubmitClaim" Content="Submit Claim" HorizontalAlignment="Center" Margin="0,26,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnSubmitClaim_Click"/>
+        <Button x:Name="btnViewClaims" Content="View Claims" HorizontalAlignment="Center" Margin="0,95,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnViewClaims_Click"/>
+        <Label x:Name="txtClaimStatus" HorizontalAlignment="Left" Margin="-19,179,0,0" VerticalAlignment="Top" Width="15"/>
+
+        <ListView x:Name="ClaimStatusListView" VerticalAlignment="Top" Margin="52,163,52,0" Height="189">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Claim ID" DisplayMemberBinding="{Binding ClaimId}" Width="50"/>
+                    <GridViewColumn Header="Class Taught" Width="100" DisplayMemberBinding="{Binding ClaimClassTaught}"/>
+                    <GridViewColumn Header="Total Amount" Width="100" DisplayMemberBinding="{Binding ClaimTotalAmount}"/>
+                    <GridViewColumn Header="Claim Status" Width="150" DisplayMemberBinding="{Binding ClaimStatus}"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+
+        <Button x:Name="btnReturn" Content="Return to Main Menu" HorizontalAlignment="Center" Margin="0,375,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnReturn_Click" />
+
+    </Grid>
+</Window>

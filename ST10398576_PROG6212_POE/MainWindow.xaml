@@ -1,0 +1,21 @@
+﻿<Window x:Class="ST10398576_PROG6212_POE.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
+        mc:Ignorable="d"
+            Title="ST10398576_Welcome User" Height="350" Width="410">
+    <!-- Link to GitHub Repository: https://github.com/ST10398576/PROG6212_POE_Part2.git-->
+    <Grid Background="#D8DEE7">
+        <Label Content="Contract Monthly Claim System" HorizontalAlignment="Left" Margin="10,12,0,0" VerticalAlignment="Top" Width="178"/>
+        <TextBlock HorizontalAlignment="Left" Margin="10,44,0,0" TextWrapping="Wrap" Text="This system is designed to help you manage your monthly claims for the contract you are working on. Please sign in or create an account to proceed" VerticalAlignment="Top" Height="52" Width="391"/>
+
+        <Button x:Name="LecturerSignIn" Content="Sign in as a Lecturer" HorizontalAlignment="Left" Margin="144,114,0,0" VerticalAlignment="Top" Height="40" Width="116" Click="LecturerSignIn_Click"/>
+        <Button x:Name="PCoordinatorAManagerSignIn" Content="Sign in as a Program Co-Ordinator/Academic Manager" HorizontalAlignment="Center" Margin="0,159,0,0" VerticalAlignment="Top" Height="40" Width="351" Click="PCoordinatorAManagerSignIn_Click"/>
+        <Button x:Name="CreateAccount" Content="Create an account" HorizontalAlignment="Left" Margin="144,204,0,0" VerticalAlignment="Top" Height="40
+    " Width="116" Click="CreateAccount_Click" />
+        <Button x:Name="btnClose" Content="Exit" HorizontalAlignment="Left" Margin="144,266,0,0" VerticalAlignment="Top" Width="116" Height="40" Click="btnClose_Click"/>
+
+    </Grid>
+</Window>
