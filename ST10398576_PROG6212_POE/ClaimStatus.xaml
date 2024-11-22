@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
         mc:Ignorable="d"
-            Title="ClaimStatus" Height="350" Width="600">
+            Title="ClaimStatus" Height="350" Width="700">
     <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
         <Label x:Name="txtClaimStatusHeading" Content="Claim Status" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
@@ -13,6 +13,7 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Claim ID" DisplayMemberBinding="{Binding ClaimID}" Width="100"/>
+                    <GridViewColumn Header="Account ID" DisplayMemberBinding="{Binding AccountID}" Width="100"/>
                     <GridViewColumn Header="Class Taught" DisplayMemberBinding="{Binding ClaimClassTaught}" Width="150"/>
                     <GridViewColumn Header="Hourly Rate" DisplayMemberBinding="{Binding ClaimHourlyRate}" Width="100"/>
                     <GridViewColumn Header="Total Amount" DisplayMemberBinding="{Binding ClaimTotalAmount}" Width="100"/>

@@ -80,13 +80,13 @@ namespace ST10398576_PROG6212_POE
                 using (SqlConnection conn = new SqlConnection(DBConn))
                 {
                     conn.Open();
-                    int AccountID = string.Parse("SELECT AccountID FROM Account WHERE Username = Username");
 
                     string query = "INSERT INTO Claims (AccountID, ClaimClassTaught, ClaimLessonNum, ClaimHourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus) " +
                                     "VALUES (@AccountID, @ClaimClassTaught, @ClaimLessonNum, @ClaimHourlyRate, @ClaimTotalAmount, @ClaimSupDocs, @ClaimStatus)";
 
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@AccountID", 1);
                         cmd.Parameters.AddWithValue("@ClaimClassTaught", ClaimClassTaught);
                         cmd.Parameters.AddWithValue("@ClaimLessonNum", ClaimLessonNum);
                         cmd.Parameters.AddWithValue("@ClaimHourlyRate", ClaimHourlyRate);

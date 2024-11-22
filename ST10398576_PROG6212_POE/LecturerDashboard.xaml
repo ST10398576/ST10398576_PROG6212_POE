@@ -22,7 +22,7 @@
             </ListView.View>
         </ListView>
 
-        <Button x:Name="btnReturn" Content="Return to Main Menu" HorizontalAlignment="Center" Margin="0,375,0,0"Margin="0,333,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnReturn_Click" />
+        <Button x:Name="btnReturn" Content="Return to Main Menu" HorizontalAlignment="Center" Margin="0,375,0,0" VerticalAlignment="Top" Height="39" Width="396" Click="btnReturn_Click" />
 
     </Grid>
 </Window>

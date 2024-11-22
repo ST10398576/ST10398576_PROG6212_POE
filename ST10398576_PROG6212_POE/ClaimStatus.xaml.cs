@@ -27,14 +27,13 @@ namespace ST10398576_PROG6212_POE
         {
             InitializeComponent();
             LoadClaims();
-            txtClaimStatusHeading.Content = $"Claim Status For all Lecturers ";
         }
 
         private void LoadClaims()
         {
             // Update the query to select the new fields
-            string query = "INSERT INTO Claims (ClaimClassTaught, ClaimLessonNum, ClaimHourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus) " +
-                           "VALUES (@ClaimClassTaught, @ClaimLessonNum, @ClaimHourlyRate, @ClaimTotalAmount, @ClaimSupDocs, @ClaimStatus)";
+            string query = "INSERT INTO Claims (AccountID, ClaimClassTaught, ClaimLessonNum, ClaimHourlyRate, ClaimTotalAmount, ClaimSupDocs, ClaimStatus) " +
+                           "VALUES (@AccountID, @ClaimClassTaught, @ClaimLessonNum, @ClaimHourlyRate, @ClaimTotalAmount, @ClaimSupDocs, @ClaimStatus)";
 
             List<Claim> claims = new List<Claim>();
             using (SqlConnection conn = new SqlConnection(DBConn))

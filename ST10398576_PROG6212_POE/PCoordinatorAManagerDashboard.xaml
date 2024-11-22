@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
         mc:Ignorable="d"
-        Title="Program Co-Ordinator/Academic Manager Dashboard" Height="300" Width="545">
+        Title="Program Co-Ordinator/Academic Manager Dashboard" Height="325" Width="545">
 
     <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
@@ -23,8 +23,9 @@
             </ListView.View>
         </ListView>
 
-        <Button Content="Approve" Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="328,0,0,19" Click="ApproveButton_Click"/>
-        <Button Content="Reject" Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="132,0,0,19" Click="RejectButton_Click"/>
-        <Button Content="Pending" Width="80" Height="30" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,235,0,0" Click="PendingButton_Click"/>
+        <Button Content="HR View" HorizontalAlignment="Left" VerticalAlignment="Top" Height="30" Width="114" Margin="42,249,0,0" Click="HR_View_Click"/>
+        <Button Content="Approve" Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="428,249,0,0" Click="ApproveButton_Click"/>
+        <Button Content="Reject" Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="258,249,0,0" Click="RejectButton_Click"/>
+        <Button Content="Pending" Width="80" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="343,249,0,0" Click="PendingButton_Click"/>
     </Grid>
 </Window>

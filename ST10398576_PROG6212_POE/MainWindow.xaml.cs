@@ -10,6 +10,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using PROG6212_POE;
 
 namespace ST10398576_PROG6212_POE
 {
@@ -42,7 +43,7 @@ namespace ST10398576_PROG6212_POE
             CreateAccount createAccount = new CreateAccount();
             createAccount.Show();
         }
-
+        
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Close();

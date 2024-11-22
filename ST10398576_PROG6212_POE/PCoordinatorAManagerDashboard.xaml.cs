@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PROG6212_POE;
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace ST10398576_PROG6212_POE
             InitializeComponent();
             LoadClaims();
         }
+
         // Method to load claims into the ListView
         private void LoadClaims()
         {
@@ -37,7 +39,7 @@ namespace ST10398576_PROG6212_POE
         private List<Claim> GetClaimsFromDatabase()
         {
             List<Claim> claims = new List<Claim>();
-            string query = "SELECT ClaimID, ClaimClassTaught, ClaimTotalAmount, ClaimStatus FROM Claims";
+            string query = "SELECT ClaimID, ClaimClassTaught, ClaimTotalAmount, ClaimStatus FROM Claims WHERE AccountID = 1";
 
             using (SqlConnection connection = new SqlConnection(DBConn))
             {
@@ -89,6 +91,13 @@ namespace ST10398576_PROG6212_POE
                 }
             }
         }
+
+        private void HR_View_Click(object sender, RoutedEventArgs e)
+        {
+            HRView hRView = new HRView();
+            hRView.Show();
+        }
+
         //Approve button changes status of claims to approved
         private void ApproveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -125,6 +134,8 @@ namespace ST10398576_PROG6212_POE
                 MessageBox.Show("Please select a claim to set as pending.");
             }
         }
+
+        
     }
 
     public class Claim
