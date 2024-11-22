@@ -26,20 +26,77 @@ namespace ST10398576_PROG6212_POE
         public PCoordinatorAManagerDashboard()
         {
             InitializeComponent();
-            LoadClaims();
+            GetClaimsFromDatabase();
+            LoadClaims(); 
         }
 
-        // Method to load claims into the ListView
+        //// Method to load claims into the ListView
         private void LoadClaims()
         {
-            List<Claim> claims = GetClaimsFromDatabase();
-            ClaimsListView.ItemsSource = claims;
+            List<Claim> dbClaims = GetClaimsFromDatabase();
+            ClaimsListView.ItemsSource = dbClaims;
+
+            List<Claim> claims = new List<Claim>();
+            using (SqlConnection conn = new SqlConnection(DBConn))
+            {
+                conn.Open();
+                string query = "SELECT ClaimID, ClaimClassTaught, ClaimLessonNum, ClaimHourlyRate, ClaimStatus FROM Claims WHERE ClaimStatus = 'Pending'";
+
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var claim = new Claim
+                            {
+                                ClaimID = (int)reader["ClaimID"],
+                                ClaimClassTaught = reader["ClaimClassTaught"]?.ToString() ?? string.Empty, // Safe access with null check
+                                ClaimLessonNum = (int)reader["ClaimLessonNum"],
+                                ClaimHourlyRate = (decimal)reader["ClaimHourlyRate"],
+                                ClaimStatus = reader["ClaimStatus"]?.ToString() ?? string.Empty, // Safe access with null check
+                                ClaimTotalAmount = (int)reader["ClaimLessonNum"] * (decimal)reader["ClaimHourlyRate"]
+                            };
+
+                            // Apply automated verification criteria
+                            if (VerifyClaimCriteria(claim))
+                            {
+                                // Automatically approve claims that meet the criteria
+                                UpdateClaimStatus(claim.ClaimID, "Approved");
+                                claim.ClaimStatus = "Approved";
+                            }
+                            else
+                            {
+                                // Automatically reject claims that fail to meet criteria
+                                UpdateClaimStatus(claim.ClaimID, "Rejected");
+                                claim.ClaimStatus = "Rejected";
+                            }
+
+                            claims.Add(claim);
+                        }
+                    }
+                }
+            }
         }
+
+        // Method to verify if a claim meets predefined criteria
+        private bool VerifyClaimCriteria(Claim claim)
+        {
+            // Define your criteria; for example:
+            int maxSessions = 20;
+            decimal maxHourlyRate = 500m;
+
+            // Check if claim meets the criteria
+            return claim.ClaimLessonNum <= maxSessions && claim.ClaimHourlyRate <= maxHourlyRate;
+        }
+
+
+
         //calls the claims and displays them in a listed view
         private List<Claim> GetClaimsFromDatabase()
         {
             List<Claim> claims = new List<Claim>();
-            string query = "SELECT ClaimID, ClaimClassTaught, ClaimTotalAmount, ClaimStatus FROM Claims WHERE AccountID = 1";
+            string query = "select claimid, claimclasstaught, claimtotalamount, claimstatus from claims where accountid = 1";
 
             using (SqlConnection connection = new SqlConnection(DBConn))
             {
@@ -62,11 +119,13 @@ namespace ST10398576_PROG6212_POE
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show("Error: " + ex.Message);
+                    MessageBox.Show("error: " + ex.Message);
                 }
             }
             return claims;
         }
+
+
         //updates the claims status based on coordinators decision
         private void UpdateClaimStatus(int claimID, string newStatus)
         {
@@ -83,13 +142,15 @@ namespace ST10398576_PROG6212_POE
                     connection.Open();
                     command.ExecuteNonQuery();
                     MessageBox.Show("Claim status updated successfully!");
-                    LoadClaims(); // Reload claims after updating
+                    //LoadClaims(); // Reload claims after updating
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
+            // Reload claims after updating
+            LoadClaims();
         }
 
         private void HR_View_Click(object sender, RoutedEventArgs e)
@@ -142,6 +203,8 @@ namespace ST10398576_PROG6212_POE
     {
         public int ClaimID { get; set; }
         public string ClaimClassTaught { get; set; }
+        public int ClaimLessonNum { get; set; }
+        public decimal ClaimHourlyRate { get; set; }
         public decimal ClaimTotalAmount { get; set; }
         public string ClaimStatus { get; set; }
     }

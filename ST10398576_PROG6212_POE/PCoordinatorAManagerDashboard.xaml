@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
         mc:Ignorable="d"
-        Title="Program Co-Ordinator/Academic Manager Dashboard" Height="325" Width="545">
+        Title="Program Co-Ordinator/Academic Manager Dashboard" Height="325" Width="600">
 
     <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
@@ -18,7 +18,7 @@
                     <GridViewColumn Header="ClaimID" Width="50" DisplayMemberBinding="{Binding ClaimID}"/>
                     <GridViewColumn Header="Class Taught" Width="200" DisplayMemberBinding="{Binding ClaimClassTaught}"/>
                     <GridViewColumn Header="Total Amount" Width="150" DisplayMemberBinding="{Binding ClaimTotalAmount}"/>
-                    <GridViewColumn Header="Status" Width="100" DisplayMemberBinding="{Binding ClaimStatus}"/>
+                    <GridViewColumn Header="Claim Status" Width="100" DisplayMemberBinding="{Binding ClaimStatus}"/>
                 </GridView>
             </ListView.View>
         </ListView>

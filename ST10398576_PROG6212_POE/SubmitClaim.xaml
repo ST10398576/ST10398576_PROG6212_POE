@@ -17,7 +17,11 @@
         <Label Content="Hourly Rate:" HorizontalAlignment="Left" Margin="10,81,0,0" VerticalAlignment="Top"/>
         <TextBox x:Name="txtHourlyRate" HorizontalAlignment="Left" Margin="147,85,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
-        <TextBlock x:Name="txtSupDocFile" TextAlignment="Center" HorizontalAlignment="Left" Margin="67,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="175"/>
+        <!-- Display calculated total amount -->
+        <TextBlock Text="Total Amount:" VerticalAlignment="Top" Margin="15,112,205,0"/>
+        <TextBlock Name="txtTotalAmount" FontWeight="Bold" FontSize="14" Margin="147,110,33,158"/>
+
+        <TextBlock x:Name="txtSupDocFile" TextAlignment="Center" HorizontalAlignment="Center" Margin="0,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="280"/>
         <Button x:Name="btnSupDoc" Content="Upload Documents" HorizontalAlignment="Left" Margin="61,166,0,0" VerticalAlignment="Top" Width="191" Click="btnSupDoc_Click"/>
 
         <Button x:Name="btnCancel" Content="Cancel" HorizontalAlignment="Left" Margin="78,210,0,0" VerticalAlignment="Top" Width="58" Height="25" Click="btnCancel_Click"/>

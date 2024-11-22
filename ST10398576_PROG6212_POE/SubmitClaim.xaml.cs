@@ -49,11 +49,11 @@ namespace ST10398576_PROG6212_POE
             if (int.TryParse(txtLessonNum.Text, out int ClaimLessonNum) && decimal.TryParse(txtHourlyRate.Text, out decimal ClaimHourlyRate))
             {
                 decimal ClaimTotalAmount = ClaimLessonNum * ClaimHourlyRate;
-                txtLessonNum.Text = $"R {ClaimTotalAmount:F2}"; // Display in currency format
+                txtTotalAmount.Text = $"R {ClaimTotalAmount:F2}"; // Display in currency format
             }
             else
             {
-                txtLessonNum.Text = "Invalid input";
+                txtTotalAmount.Text = "Invalid input";
             }
         }
 
