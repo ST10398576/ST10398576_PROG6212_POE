@@ -52,7 +52,7 @@ namespace ST10398576_PROG6212_POE
 
             if (UserPhoneNumber.Length != 10)
             {
-                MessageBox.Show("Please make sure The Phne Number only has 10 digits.");
+                MessageBox.Show("Please make sure The Phone Number only has 10 digits.");
                 return;
             }
 
