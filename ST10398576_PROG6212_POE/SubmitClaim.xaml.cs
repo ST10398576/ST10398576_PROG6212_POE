@@ -44,19 +44,6 @@ namespace ST10398576_PROG6212_POE
 
         }
 
-        private void btnCalculate_Click(object sender, RoutedEventArgs e)
-        {
-            if (int.TryParse(txtLessonNum.Text, out int ClaimLessonNum) && decimal.TryParse(txtHourlyRate.Text, out decimal ClaimHourlyRate))
-            {
-                decimal ClaimTotalAmount = ClaimLessonNum * ClaimHourlyRate;
-                txtTotalAmount.Text = $"R {ClaimTotalAmount:F2}"; // Display in currency format
-            }
-            else
-            {
-                txtTotalAmount.Text = "Invalid input";
-            }
-        }
-
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
             try 
