@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PROG6212_POE
+namespace ST10398576_PROG6212_POE
 {
     /// <summary>
     /// Interaction logic for HRView.xaml
