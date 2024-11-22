@@ -27,11 +27,7 @@ namespace ST10398576_PROG6212_POE
         public LecturerDashboard(string Username)
         {
             InitializeComponent();
-            string LecturerUsername = Username;
-            txtClaimStatus.Content = $"Claim Status of {Username}";
-            LoadClaimStatusViewer();
         }
-
 
         private void btnSubmitClaim_Click(object sender, RoutedEventArgs e)
         {
@@ -39,9 +35,10 @@ namespace ST10398576_PROG6212_POE
             submitClaim.Show();
         }
 
-        private void btnSupportingDocs_Click(object sender, RoutedEventArgs e)
+        private void btnViewClaims_Click(object sender, RoutedEventArgs e)
         {
-
+            ViewClaims viewClaims = new ViewClaims();
+            viewClaims.Show();
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
@@ -50,19 +47,5 @@ namespace ST10398576_PROG6212_POE
             main.Show();
             Close();
         }
-
-        private void LoadClaimStatusViewer()
-        {
-            string query = "SELECT ClaimID, ClaimClassTaught, ClaimTotalAmount, ClaimStatus FROM Claims"; // Adjust the query as necessary
-
-            using (SqlConnection connection = new SqlConnection(DBConn))
-            {
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-                ClaimStatusListView.ItemsSource = dataTable.DefaultView; // Set the data source for the ListView
-            }
-        }
-
     }
 }

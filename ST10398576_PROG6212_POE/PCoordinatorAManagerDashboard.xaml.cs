@@ -96,7 +96,7 @@ namespace ST10398576_PROG6212_POE
         private List<Claim> GetClaimsFromDatabase()
         {
             List<Claim> claims = new List<Claim>();
-            string query = "select claimid, claimclasstaught, claimtotalamount, claimstatus from claims where accountid = 1";
+            string query = "select ClaimID, ClaimClassTaught, ClaimTotalAmount, ClaimStatus from Claims where AccountID = 1";
 
             using (SqlConnection connection = new SqlConnection(DBConn))
             {

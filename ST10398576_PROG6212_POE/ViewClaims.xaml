@@ -1,11 +1,11 @@
-﻿<Window x:Class="ST10398576_PROG6212_POE.ClaimStatus"
+﻿<Window x:Class="ST10398576_PROG6212_POE.ViewClaims"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ST10398576_PROG6212_POE"
         mc:Ignorable="d"
-            Title="ClaimStatus" Height="350" Width="700">
+                Title="ViewClaims" Height="350" Width="700">
     <!-- Link to GitHub Repository: https://github.com/ST10398576/ST10398576_PROG6212_POE.git -->
     <Grid Background="#D8DEE7">
         <Label x:Name="txtClaimStatusHeading" Content="Claim Status" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
@@ -13,8 +13,8 @@
             <ListView.View>
                 <GridView>
                     <GridViewColumn Header="Claim ID" DisplayMemberBinding="{Binding ClaimID}" Width="100"/>
-                    <GridViewColumn Header="Account ID" DisplayMemberBinding="{Binding AccountID}" Width="100"/>
                     <GridViewColumn Header="Class Taught" DisplayMemberBinding="{Binding ClaimClassTaught}" Width="150"/>
+                    <GridViewColumn Header="Lesson Number" DisplayMemberBinding="{Binding ClaimLessonNum}" Width="100"/>
                     <GridViewColumn Header="Hourly Rate" DisplayMemberBinding="{Binding ClaimHourlyRate}" Width="100"/>
                     <GridViewColumn Header="Total Amount" DisplayMemberBinding="{Binding ClaimTotalAmount}" Width="100"/>
                     <GridViewColumn Header="Claim Status" DisplayMemberBinding="{Binding ClaimStatus}" Width="125"/>
